@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!--BootStrap-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -32,14 +32,30 @@
 
     <!--Title-->
     <title>Searching App</title>
-</head>
-<body>
-    
-    <input type="text" name="city_search_inp" id="city_search_inp">
+  </head>
+  <body>
+
+    <div>
+    <input type="text" name="city_search_inp" id="city_search_inp" />
     <button onclick="fetch_api()">Search</button>
+    </div>
+
+    <div class="weather_card container">
+      <div class="weather_body">
+        <div class="date_time_loc">
+          <p id="loc" class="loc border"></p>
+          <p id="day" class="day border"></p>
+          <p id="date" class="date border"></p>
+        </div>
+        <div class="temp_icon border">
+          <h1 id="temp" class="temp border"></h1>
+          <h3 id="icon" class="icon border"></h3>
+        </div>
+      </div>
+    </div>
 
 
-     <!--HTML END-->
+    <!--HTML END-->
 
     <!--Scripts-->
     <!--Bootstrap-->
@@ -49,7 +65,15 @@
       crossorigin="anonymous"
     ></script>
 
+    <!--MomentJS-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment-with-locales.min.js"
+      integrity="sha512-4F1cxYdMiAW98oomSLaygEwmCnIP38pb4Kx70yQYqRwLVCs3DbRumfBq82T08g/4LJ/smbFGFpmeFlQgoDccgg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
     <!--Vanilla JS-->
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>
