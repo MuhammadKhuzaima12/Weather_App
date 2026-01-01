@@ -22,6 +22,7 @@ async function fetch_api({ city = null, lat = null, lon = null } = {}) {
       return;
     }
 
+    console.log(data)
     return data;
   } catch (error) {
     console.error("Fetch error:", error);
@@ -90,9 +91,8 @@ function assign_values(data) {
   } = elements;
 
   // Weather Data Destructuring
-  const {
+  let {
     name: city,
-    sys: { country },
     main: {
       temp,
       temp_min,
@@ -102,22 +102,25 @@ function assign_values(data) {
     wind: { speed },
     weather: [{ main: condition, description }]
   } = data;
+  description = description.toUpperCase();
 
   // Assign Values
-  loc.innerText = `${city}, ${country}`;
-  day.innerText = moment().format("dddd");
-  date.innerText = moment().format("MMM Do YY");
+  loc.innerText = `${city}`;
+  day.innerText = `${moment().format("dddd")},${moment().format("MMM Do YY") }`;
 
   tempEl.innerHTML = `${Math.round(temp)}°`;
-  tmin.innerHTML = `${Math.round(temp_min)}°`;
-  tmax.innerHTML = `${Math.round(temp_max)}°`;
+  tmin.innerHTML = `${temp_min}°🌡️`;
+  tmax.innerHTML = `${temp_max}°🌡️`;
 
-  h_info.innerHTML = `${humidity}%`;
-  w_info.innerHTML = `${(speed * 3.6).toFixed(1)} km/h`;
+  h_info.innerHTML = `${humidity}%💧`;
+  w_info.innerHTML = `${(speed * 3.6).toFixed(1)} km/h💨`;
 
   icon_dsc.innerText = description;
     setIcon(condition, icon);
-    setBackground(condition);
+  setBackground(condition);
+  
+  const search_inp = document.getElementById("city_search_inp");
+  search_inp.value = ``;
 }
 
 //    WEATHER ICON HANDLER
@@ -148,25 +151,28 @@ function assign_values(data) {
 
 //    BACKGROUND HANDLER
 {
-    const weatherBackgrounds = {
-        Clear: "url('images/clear.jpg')",
-        Clouds: "url('images/clouds.jpg')",
-        Drizzle: "url('images/drizzle.jpg')",
-        Rain: "url('images/rain.jpg')",
-        Thunderstorm: "url('images/thunderstorm.jpg')",
-        Snow: "url('images/snow.jpg')",
+  const weatherBackgrounds = {
+    Clear: "url('./images/clear.webp')",
+    Clouds: "url('./images/clouds.webp')",
+    Drizzle: "url('./images/drizzle.webp')",
+    Rain: "url('./images/rain.webp')",
+    Thunderstorm: "url('./images/thunderstorm.webp')",
+    Snow: "url('./images/snow.webp')",
+    Mist: "url('./images/fog.webp')",
+    Smoke: "url('./images/fog.webp')",
+    Haze: "url('./images/fog.webp')",
+    Fog: "url('./images/fog.webp')",
+    Dust: "url('./images/dust.webp')",
+    Sand: "url('./images/dust.webp')",
+    Ash: "url('./images/ash.webp')",
+    Squall: "url('./images/wind.webp')",
+    Tornado: "url('./images/tornado.webp')"
+  };
 
-        Dust: "url('images/dust.jpg')",
-        Sand: "url('images/dust.jpg')",
-        Ash: "url('images/ash.jpg')",
-        Squall: "url('images/wind.jpg')",
-        Tornado: "url('images/tornado.jpg')"
-    };
+  function setBackground(condition) {
+    document.body.style.backgroundImage = weatherBackgrounds[condition] || "url('./images/fog.webp')";
+  }
 
-    function setBackground(condition) {
-        document.body.style.backgroundImage =
-            weatherBackgrounds[condition] || "url('images/fog.jpg')";
-    }
 }
 
 //    PAGE LOAD EVENT

@@ -27,53 +27,48 @@
 
 <body>
 
-  <input type="text" name="city_search_inp" id="city_search_inp" />
-  <button class="btn btn-outline-primary" onclick="initWeather()">Search</button>
-   <!-- <div id="search_city">
-    <input type="text" name="city_search_inp" id="city_search_inp" />
-    <button class="btn btn-outline-primary" onclick="fetch_api()">Search</button>
-  </div> -->
+  <div class="city_temp">
+    <h1 id="temp" class="temp "></h1>
 
+    <div class="loc_div">
+    <h2 id="loc" class="loc "></h2>
+    <p id="day" class="day "></p>
+    </div>
+    
+    <div class="icon_div">
+    <p id="icon" class="icon "></p>
+  </div>
+  
+  
+</div>
 
-  <div id="weather_card" class="weather_card container">
-
-    <div class="weather_body ">
-
-      <div class="date_time_loc border_cls">
-        <p id="loc" class="loc "></p>
-        <p id="day" class="day "></p>
-        <p id="date" class="date "></p>
-      </div>
-
-      <div class="info">
-        <div class="temp_icon border_cls">
-          <h3 id="icon" class="icon "></h3>
-          <h4 id="icon_dsc" class="icon_dsc "></h4>
-          <h1 id="temp" class="temp "></h1>
-        </div>
-        <div class="h_w">
-          <div class="tmin_info">
+<div id="weather_card" class="weather_card container">
+  <div class="search_inp_div" id="search_inp">
+    <input class="search_inp" type="text" name="city_search_inp" id="city_search_inp" placeholder="Search Location..." />
+    <button class="search_btn" onclick="initWeather()"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </div>
+  
+  
+  <div class="info">
+    <h5><b>Weather Details...</b></h5>
+    <p id="icon_dsc" class="icon_dsc "></p>
+          <div class="tmin_info info_ch">
             <span><b>Temp min</b></span>
             <span id="tmin_info"></span>
           </div>
-          <div class="tmax_info">
+          <div class="tmax_info info_ch">
             <span><b>Temp max</b></span>
             <span id="tmax_info"></span>
           </div>
-          <div class="h_info">
+          <div class="h_info info_ch">
             <span><b>Humidity</b></span>
             <span id="h_info"></span>
           </div>
-          <div class="w_info">
+          <div class="w_info info_ch">
             <span><b>Wind</b></span>
             <span id="w_info"></span>
           </div>
-        </div>
       </div>
-
-    </div>
-
-    <button id="change_loc" class="btn-outline-info change_loc" onclick="on_change_loc()"><i class="fa-solid fa-location-dot"></i>  <b>Change Location</b></button>
   
   </div>
   
