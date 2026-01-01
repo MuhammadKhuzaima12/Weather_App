@@ -27,10 +27,13 @@
 
 <body>
 
-  <div id="search_city">
+  <input type="text" name="city_search_inp" id="city_search_inp" />
+  <button class="btn btn-outline-primary" onclick="initWeather()">Search</button>
+   <!-- <div id="search_city">
     <input type="text" name="city_search_inp" id="city_search_inp" />
     <button class="btn btn-outline-primary" onclick="fetch_api()">Search</button>
-  </div>
+  </div> -->
+
 
   <div id="weather_card" class="weather_card container">
 
@@ -49,8 +52,22 @@
           <h1 id="temp" class="temp "></h1>
         </div>
         <div class="h_w">
-          <div id="h_info" class="h_info"></div>
-          <div id="w_info" class="w_info"></div>
+          <div class="tmin_info">
+            <span><b>Temp min</b></span>
+            <span id="tmin_info"></span>
+          </div>
+          <div class="tmax_info">
+            <span><b>Temp max</b></span>
+            <span id="tmax_info"></span>
+          </div>
+          <div class="h_info">
+            <span><b>Humidity</b></span>
+            <span id="h_info"></span>
+          </div>
+          <div class="w_info">
+            <span><b>Wind</b></span>
+            <span id="w_info"></span>
+          </div>
         </div>
       </div>
 
