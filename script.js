@@ -6,6 +6,9 @@ const loader = document.getElementById("loader");
 const weatherCard = document.querySelector(".weather_card");
 const cityTemp = document.querySelector(".city_temp");
 
+// Track last updated city
+let lastCity = null;
+
 // Show loader
 function showLoader() {
   if (loader) loader.style.display = "flex";
@@ -19,6 +22,7 @@ function hideLoader() {
 // Animate updates
 function animateUpdate() {
   [weatherCard, cityTemp].forEach(el => {
+    if (!el) return;
     el.classList.add("animate-update");
     setTimeout(() => el.classList.remove("animate-update"), 500);
   });
@@ -135,7 +139,7 @@ function assign_values(data) {
   };
 
   const {
-    loc, day, date, temp: tempEl,
+    loc, day, temp: tempEl,
     tmin, tmax, icon, icon_dsc,
     humidity: h_info, wind: w_info
   } = elements;
@@ -152,6 +156,13 @@ function assign_values(data) {
     wind: { speed },
     weather: [{ main: condition, description }]
   } = data;
+
+  // Animate only if city changes
+  if (city !== lastCity) {
+    animateUpdate();
+    lastCity = city;
+  }
+
   description = description.toUpperCase();
 
   // Assign Values
@@ -169,9 +180,8 @@ function assign_values(data) {
   setIcon(condition, icon);
   setBackground(condition);
 
-  if (el) {
-    animateUpdate()  // Trigger animation on update
-  }
+  animateUpdate()  // Trigger animation on update
+
 
   const search_inp = document.getElementById("city_search_inp");
   search_inp.value = ``;
