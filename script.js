@@ -1,6 +1,29 @@
 //    API CONFIG
 const API_KEY = "915c5646014abe2e9deba2e32250891c";
 
+// Dom Elements
+const loader = document.getElementById("loader");
+const weatherCard = document.querySelector(".weather_card");
+const cityTemp = document.querySelector(".city_temp");
+
+// Show loader
+function showLoader() {
+  if (loader) loader.style.display = "flex";
+}
+
+// Hide loader
+function hideLoader() {
+  if (loader) loader.style.display = "none";
+}
+
+// Animate updates
+function animateUpdate() {
+  [weatherCard, cityTemp].forEach(el => {
+    el.classList.add("animate-update");
+    setTimeout(() => el.classList.remove("animate-update"), 500);
+  });
+}
+
 //    API FETCH FUNCTION
 async function fetch_api({ city = null, lat = null, lon = null } = {}) {
   let url = "";
@@ -13,6 +36,8 @@ async function fetch_api({ city = null, lat = null, lon = null } = {}) {
     return;
   }
 
+  showLoader();
+
   try {
     const response = await fetch(url);
     const data = await response.json();
@@ -22,14 +47,16 @@ async function fetch_api({ city = null, lat = null, lon = null } = {}) {
       Swal.fire({
         title: "Oops...",
         text: `${data.message}`,
-        icon: "data.message"
+        icon: "error"
       });
 
     // Clear search input
-    document.getElementById("city_search_inp").value = "";
+      document.getElementById("city_search_inp").value = "";
+      hideLoader();
     return;
   }
 
+    hideLoader();
     return data;
 } catch (error) {
   // SweetAlert for network or unexpected errors
@@ -40,7 +67,8 @@ async function fetch_api({ city = null, lat = null, lon = null } = {}) {
   });
 
 // Clear search input
-document.getElementById("city_search_inp").value = "";
+    document.getElementById("city_search_inp").value = "";
+    hideLoader();
   }
 }
 
@@ -65,6 +93,8 @@ if (data) assign_values(data);
 /*   LOAD WEATHER ON PAGE START
     (Geolocation + Default)*/
 function loadWeatherOnStart() {
+  showLoader();
+
   if (!navigator.geolocation) {
     loadDefaultWeather();
     return;
@@ -138,6 +168,10 @@ function assign_values(data) {
   icon_dsc.innerText = description;
   setIcon(condition, icon);
   setBackground(condition);
+
+  if (el) {
+    animateUpdate()  // Trigger animation on update
+  }
 
   const search_inp = document.getElementById("city_search_inp");
   search_inp.value = ``;
@@ -214,10 +248,11 @@ function assign_values(data) {
     const weatherCard = document.querySelector(".weather_card");
     if (weatherCard) {
       // Use fog_color_wc only for fog-like conditions
-      if (["Fog", "Mist", "Smoke", "Ash", "Thunderstorm"].includes(condition)) {
-        weatherCard.style.color = fog_color_wc;
-      } else {
-        weatherCard.style.color = "black"; // fallback for other conditions
+      if (weatherCard) {
+        weatherCard.style.color =
+          ["Fog", "Mist", "Smoke", "Ash", "Thunderstorm"].includes(condition)
+            ? fog_color_wc
+            : "black";
       }
     }
   }
