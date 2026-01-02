@@ -18,7 +18,7 @@ SkyScope is a modern, responsive web application that allows users to check the 
 
 ## 🌐 Demo
 
-*(You can add a link to your live demo here if hosted on GitHub Pages or any server)*
+*https://muhammadkhuzaima12.github.io/SkyScope/*
 
 ---
 
