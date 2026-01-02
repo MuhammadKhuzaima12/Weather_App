@@ -1,5 +1,5 @@
 //    API CONFIG
-const API_KEY = "YOUR_OPENWEATHERMAP_API_KEY";
+const API_KEY = "915c5646014abe2e9deba2e32250891c";
 
 //    API FETCH FUNCTION
 async function fetch_api({ city = null, lat = null, lon = null } = {}) {
