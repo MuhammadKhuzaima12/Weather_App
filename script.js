@@ -168,10 +168,40 @@ function assign_values(data) {
     Squall: "url('./images/wind.webp')",
     Tornado: "url('./images/tornado.webp')"
   };
+  
+  const fog_color = "#2da8a8ff";
+  const fog_color_wc = "#033131ff";
+  
+  const weatherColors = {
+    Fog: fog_color,
+    Mist: fog_color,
+    Smoke: fog_color,
+
+    Ash: fog_color,
+
+    Thunderstorm: fog_color
+  };
+
 
   function setBackground(condition) {
+    // Body background image
     document.body.style.backgroundImage = weatherBackgrounds[condition] || "url('./images/fog.webp')";
+
+    // Body text color
+    document.body.style.color = weatherColors[condition] || "black";
+
+    // Weather card text color
+    const weatherCard = document.querySelector(".weather_card");
+    if (weatherCard) {
+      // Use fog_color_wc only for fog-like conditions
+      if (["Fog", "Mist", "Smoke", "Ash", "Thunderstorm"].includes(condition)) {
+        weatherCard.style.color = fog_color_wc;
+      } else {
+        weatherCard.style.color = "black"; // fallback for other conditions
+      }
+    }
   }
+
 
 }
 

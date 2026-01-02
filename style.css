@@ -1,23 +1,24 @@
 body {
     margin: 0;
-    padding: 0;
+    padding: 10px 40px 0 40px;
     width: 100%;
     min-height: 100vh;
+
     display: flex;
-    /* justify-content: space-between; */
-    align-items: center;
-    gap: 50px;
-    background-image: url('./images/bg_img.jpeg');
+    justify-content: space-between;
+    align-items: stretch;
+
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
+
 .weather_card {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(12px);
     width: 30%;
-    height: 100vh;
+    height: 98vh;
     border: 1px solid rgba(255, 255, 255, 0.3) black;
     border-radius: 12px;
     display: flex;
@@ -71,20 +72,27 @@ body {
     justify-content: space-between;
 }
 
-.city_temp {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    width: 34%;
-    border: 1px solid rgba(255, 255, 255, 0.1) black;
-    border-radius: 12px;
-    margin-left: 90px;
-    margin-top: 150px;
-    height: 40%;
+.left_panel {
     display: flex;
-    padding: 50px;
+    flex-direction: column;
+
+    width: 50%;
+}
+
+.city_temp,
+.logo_div {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(2px);
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
     align-items: center;
-    justify-content: center;
-    gap: 30px;
+}
+
+.city_temp{
+    width: 400px;
+    margin-top: 300px;
 }
 
 .temp {
@@ -117,4 +125,75 @@ body {
     padding: 0;
     font-size: 50px;
     margin-bottom: 0;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+
+/* Tablet - width <= 992px */
+@media (max-width: 992px) {
+    body {
+        flex-direction: column;
+        padding: 10px 20px 0 20px;
+        align-items: center;
+    }
+
+    .left_panel {
+        width: 90%;
+        align-items: center;
+    }
+
+    .logo_div {
+        width: 100%;
+        margin-bottom: 20px;
+        justify-content: flex-start;
+    }
+
+    .city_temp {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .weather_card {
+        width: 100%;
+        height: auto;
+        margin-top: 30px;
+    }
+}
+
+/* Mobile - width <= 576px */
+@media (max-width: 576px) {
+    body {
+        padding: 10px;
+    }
+
+    .logo_div,
+    .city_temp,
+    .weather_card {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .city_temp {
+        margin-top: 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .temp {
+        font-size: 45px;
+        height: auto;
+    }
+
+    .loc {
+        font-size: 25px;
+    }
+
+    .icon {
+        font-size: 40px;
+    }
+
+    .info {
+        padding: 20px 0;
+        gap: 30px;
+    }
 }

@@ -27,51 +27,62 @@
 
 <body>
 
-  <div class="city_temp">
-    <h1 id="temp" class="temp "></h1>
-
-    <div class="loc_div">
-    <h2 id="loc" class="loc "></h2>
-    <p id="day" class="day "></p>
-    </div>
-    
-    <div class="icon_div">
-    <p id="icon" class="icon "></p>
-  </div>
-  
-  
-</div>
-
-<div id="weather_card" class="weather_card container">
-  <div class="search_inp_div" id="search_inp">
-    <input class="search_inp" type="text" name="city_search_inp" id="city_search_inp" placeholder="Search Location..." />
-    <button class="search_btn" onclick="initWeather()"><i class="fa-solid fa-magnifying-glass"></i></button>
-  </div>
-  
-  
-  <div class="info">
-    <h5><b>Weather Details...</b></h5>
-    <p id="icon_dsc" class="icon_dsc "></p>
-          <div class="tmin_info info_ch">
-            <span><b>Temp min</b></span>
-            <span id="tmin_info"></span>
-          </div>
-          <div class="tmax_info info_ch">
-            <span><b>Temp max</b></span>
-            <span id="tmax_info"></span>
-          </div>
-          <div class="h_info info_ch">
-            <span><b>Humidity</b></span>
-            <span id="h_info"></span>
-          </div>
-          <div class="w_info info_ch">
-            <span><b>Wind</b></span>
-            <span id="w_info"></span>
-          </div>
+  <div class="left_panel">
+    <div class="logo_div">
+      <img style="border-radius: 15px;" src="./images/favicon.ico" alt="Logo" width="70" height="70">
+      <div>
+        <h4>SkyScope</h4>
+        <p>Gives a sense of “Looking at the Sky” and checking Weather</p>
       </div>
-  
+    </div>
+
+    <div class="city_temp">
+      <h1 id="temp" class="temp "></h1>
+
+      <div class="loc_div">
+        <h2 id="loc" class="loc "></h2>
+        <p id="day" class="day "></p>
+      </div>
+
+      <div class="icon_div">
+        <p id="icon" class="icon "></p>
+      </div>
+
+
+    </div>
   </div>
-  
+
+  <div id="weather_card" class="weather_card container">
+    <div class="search_inp_div" id="search_inp">
+      <input class="search_inp" type="text" name="city_search_inp" id="city_search_inp"
+        placeholder="Search Location..." />
+      <button class="search_btn" onclick="initWeather()"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+
+
+    <div class="info">
+      <h5><b>Weather Details...</b></h5>
+      <p id="icon_dsc" class="icon_dsc "></p>
+      <div class="tmin_info info_ch">
+        <span><b>Temp min</b></span>
+        <span id="tmin_info"></span>
+      </div>
+      <div class="tmax_info info_ch">
+        <span><b>Temp max</b></span>
+        <span id="tmax_info"></span>
+      </div>
+      <div class="h_info info_ch">
+        <span><b>Humidity</b></span>
+        <span id="h_info"></span>
+      </div>
+      <div class="w_info info_ch">
+        <span><b>Wind</b></span>
+        <span id="w_info"></span>
+      </div>
+    </div>
+
+  </div>
+
 
 
   <!--HTML END-->
