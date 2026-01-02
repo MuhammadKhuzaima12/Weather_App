@@ -18,14 +18,29 @@ async function fetch_api({ city = null, lat = null, lon = null } = {}) {
     const data = await response.json();
 
     if (data.cod !== 200) {
-      console.error("API Error:", data.message);
-      return;
-    }
+      // SweetAlert error for city not found or other API errors
+      Swal.fire({
+        title: "Oops...",
+        text: `${data.message}`,
+        icon: "data.message"
+      });
 
-    console.log(data)
+    // Clear search input
+    document.getElementById("city_search_inp").value = "";
+    return;
+  }
+
     return data;
-  } catch (error) {
-    console.error("Fetch error:", error);
+} catch (error) {
+  // SweetAlert for network or unexpected errors
+  Swal.fire({
+    title: "Network Error",
+    text: "Something went wrong while fetching weather data!",
+    icon: "error"
+  });
+
+// Clear search input
+document.getElementById("city_search_inp").value = "";
   }
 }
 
@@ -34,13 +49,18 @@ async function initWeather() {
   const city = document.getElementById("city_search_inp").value.trim();
 
   if (!city) {
-    alert("Please enter a city name");
-    return;
-  }
-
-  const data = await fetch_api({ city });
-  if (data) assign_values(data);
+    Swal.fire({
+      title: "Enter a city",
+      text: "Please enter a city name to search.",
+      icon: "warning"
+    });
+  return;
 }
+
+const data = await fetch_api({ city });
+if (data) assign_values(data);
+}
+
 
 /*   LOAD WEATHER ON PAGE START
     (Geolocation + Default)*/
@@ -106,7 +126,7 @@ function assign_values(data) {
 
   // Assign Values
   loc.innerText = `${city}`;
-  day.innerText = `${moment().format("dddd")},${moment().format("MMM Do YY") }`;
+  day.innerText = `${moment().format("dddd")},${moment().format("MMM Do YY")}`;
 
   tempEl.innerHTML = `${Math.round(temp)}°`;
   tmin.innerHTML = `${temp_min}°🌡️`;
@@ -116,9 +136,9 @@ function assign_values(data) {
   w_info.innerHTML = `${(speed * 3.6).toFixed(1)} km/h💨`;
 
   icon_dsc.innerText = description;
-    setIcon(condition, icon);
+  setIcon(condition, icon);
   setBackground(condition);
-  
+
   const search_inp = document.getElementById("city_search_inp");
   search_inp.value = ``;
 }
@@ -168,10 +188,10 @@ function assign_values(data) {
     Squall: "url('./images/wind.webp')",
     Tornado: "url('./images/tornado.webp')"
   };
-  
+
   const fog_color = "#2da8a8ff";
   const fog_color_wc = "#033131ff";
-  
+
   const weatherColors = {
     Fog: fog_color,
     Mist: fog_color,
