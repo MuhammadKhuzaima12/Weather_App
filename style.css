@@ -48,6 +48,7 @@ body {
 
 .search_inp:focus{
     outline: none;
+    background-color: transparent;
 }
 
 .search_btn {
